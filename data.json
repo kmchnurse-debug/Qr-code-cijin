@@ -1,0 +1,6 @@
+[
+  {"id":"opd-1","name":"門診耗材 1","code":"OPD-001","category":"門診","location":"門診庫房","image":"","note":""},
+  {"id":"opd-2","name":"門診耗材 2","code":"OPD-002","category":"門診","location":"門診庫房","image":"","note":""},
+  {"id":"ward-1","name":"病房耗材 1","code":"WARD-001","category":"病房","location":"病房庫房","image":"","note":""},
+  {"id":"hd-1","name":"洗腎室耗材 1","code":"HD-001","category":"洗腎室","location":"洗腎室庫房","image":"","note":""}
+]
