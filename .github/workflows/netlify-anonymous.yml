@@ -15,7 +15,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install project dependencies
-        run: npm install --no-audit --no-fund
-      - name: Deploy anonymously to Netlify
-        run: npx --yes netlify-cli@latest deploy --prod --allow-anonymous --dir . --functions netlify/functions
+      - name: Prepare static preview
+        run: |
+          mkdir -p /tmp/storeroom-preview/assets
+          cp index.html styles.css app.js /tmp/storeroom-preview/
+          cp assets/mobao-logo.jpeg /tmp/storeroom-preview/assets/
+      - name: Deploy public preview anonymously
+        working-directory: /tmp/storeroom-preview
+        run: npx --yes netlify-cli@latest deploy --prod --allow-anonymous --dir .
