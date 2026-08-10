@@ -1,0 +1,22 @@
+name: One-time Netlify preview
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install project dependencies
+        run: npm install --no-audit --no-fund
+      - name: Deploy anonymously to Netlify
+        run: npx --yes netlify-cli@latest deploy --prod --allow-anonymous --dir . --functions netlify/functions
