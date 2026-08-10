@@ -1,0 +1,51 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>津－護理庫房</title><meta name="description" content="津－護理庫房耗材照片、位置與 QR Code 查詢系統。">
+<link rel="stylesheet" href="/assets/style.css"></head><body>
+<main><header class="topbar"><a class="brand" href="#top"><span class="brandMark">津</span><span><strong>津－護理庫房</strong><small>照片與資料管理系統</small></span></a><div class="headerActions"><button class="adminLogin" id="adminBtn">管理者登入</button><button class="addTop" id="addTop" hidden>＋ 新增耗材</button><button class="logoutTop" id="logoutTop" hidden>登出</button></div></header>
+<section class="hero" id="top"><div class="heroCopy"><p class="eyebrow">津－護理庫房</p><h1>找耗材，<br><em>更快一步。</em></h1><p class="intro" id="heroIntro">快速查詢護理耗材的名稱、編碼、分類、存放位置及圖片 QR Code。</p><div class="searchBox"><span>⌕</span><input id="search" placeholder="輸入耗材名稱、編碼或存放位置…" aria-label="搜尋護理耗材"></div></div><div class="heroCard"><div class="heroIcon">▦</div><strong>快速查詢・清楚定位</strong><p>護理耗材資訊</p></div></section>
+<section class="catalog" id="inventory"><div class="catalogHead"><div><p class="eyebrow">SELECT A DEPARTMENT</p><h2 id="catalogTitle">請先選擇分類</h2>
+</div><p>點選分類後，才會顯示該區的耗材與圖片。</p></div><div class="categoryGrid" id="categories"></div><div id="items"></div></section>
+<footer><div class="footerContent"><div class="footerBrand"><strong>津一護理庫房</strong><p>醫療耗材資料庫</p><p>累積訪客 <span id="visitors">0</span> 人</p></div><p class="footerVersion">Version 1.0.0</p><div class="copyright"><div class="copyrightLine"><img class="copyrightLogo" src="/assets/mobao-logo.svg" alt="Mobao Manufacturing Co., Ltd. Logo"><span>Copyright © 2026 Mobao Manufacturing Co., Ltd.</span></div><p>All Rights Reserved.</p></div></div></footer></main>
+<div class="modal" id="modal"><div class="dialog"><button class="close" id="close">×</button><div id="login"><p class="eyebrow modalEyebrow">ADMIN LOGIN</p><h2>管理者登入</h2><p class="loginHint">請輸入管理者帳號與密碼。</p><label>帳號</label><input id="username" type="text" autocomplete="username"><label>密碼</label><input id="password" type="password" autocomplete="current-password"><div class="loginActions"><button class="cancelBtn" id="cancelBtn">取消</button><button id="loginBtn">登入</button></div></div><div id="admin" hidden>
+<h2 class="addTitle">新增耗材</h2>
+<div class="photoUploadBox">
+  <div class="photoPreview" id="photoPreview">尚未選擇照片</div>
+  <label class="photoBtn" for="photoFile">選擇手機／電腦照片</label>
+  <input id="photoFile" type="file" accept="image/*" hidden>
+  <p>直接上傳可顯示照片；若要產生不含網站字樣的 QR Code，請改貼 Google Drive 網址。</p>
+</div>
+<div class="materialForm">
+<label>耗材編碼 *</label><input id="c" placeholder="例如 RAD-007"><small>既有耗材編碼也可以修改。</small>
+<label>耗材名稱 *</label><input id="n">
+<label>分類</label><select id="cat"><option value="">請選擇</option><option>門診</option><option>病房</option><option>洗腎室</option><option>急診</option></select>
+<label>存放位置</label><input id="loc" placeholder="例如 A區・第1櫃">
+<label>規格</label><input id="spec">
+<label>庫存數量</label><input id="qty" type="number" min="0" value="0">
+<label>單位</label><input id="unit" value="件">
+<label>Google Drive 圖片網址（產生 QR Code 必填）</label><input id="img" placeholder="https://drive.google.com/file/d/.../view"><small>照片權限必須設為「知道連結的人皆可查看」；QR Code 會直接連到 Google Drive。</small>
+<label>備註</label><input id="note">
+</div>
+<div class="formActions"><button class="cancelBtn" id="cancelAdd">取消</button><button id="add">新增耗材</button></div>
+<div id="adminList"></div></div></div></div>
+<script src="/assets/app.js"></script>
+<div class="overlay" id="imageOverlay">
+  <button type="button" class="overlayClose" id="overlayClose" onclick="closeImageOverlay()">關閉</button>
+  <div class="imageDialog">
+    <div class="codeBadge" id="viewCode"></div>
+    <img id="viewImage" alt="耗材大圖">
+    <button type="button" class="greenWide" id="closeImage" onclick="closeImageOverlay()">關閉圖片</button>
+  </div>
+</div>
+<div class="qrPage" id="qrPage">
+  <button class="backBtn" id="backQr">← 返回耗材列表</button>
+  <div class="qrCard">
+    <div class="qrLabel">IMAGE QR CODE</div>
+    <div class="codeBadge" id="qrCodeText"></div>
+    <h2 id="qrName"></h2>
+    <div class="qrFrame"><img id="qrImage" alt="QR Code"></div>
+    <p>掃描後直接開啟圖片</p>
+    <button class="greenWide" id="editImageUrl" hidden>編輯圖片網址</button>
+    <button class="grayWide" id="backQr2">返回列表</button>
+  </div>
+</div>
+</body></html>
