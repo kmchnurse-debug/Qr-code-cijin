@@ -1,4 +1,25 @@
 [build]
   publish = "."
   functions = "netlify/functions"
-  command = "npm install"
+
+[[redirects]]
+  from = "/api/items"
+  to = "/.netlify/functions/items"
+  status = 200
+
+[[redirects]]
+  from = "/api/login"
+  to = "/.netlify/functions/login"
+  status = 200
+
+[[redirects]]
+  from = "/api/visitors"
+  to = "/.netlify/functions/visitors"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

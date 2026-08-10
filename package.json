@@ -1,7 +1,9 @@
 {
-  "name": "jin-nursing-storage",
+  "name": "jin-storeroom-catalog",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@netlify/blobs": "^9.1.0"
+    "@netlify/blobs": "10.7.10"
   }
 }
